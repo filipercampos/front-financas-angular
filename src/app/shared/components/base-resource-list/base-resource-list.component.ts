@@ -17,7 +17,6 @@ export abstract class BaseResourceListComponent<T extends BaseResourceModel>
           ? value.sort((a, b) => b.id - a.id)
           : []),
       error: (e) => alert(`Fail getAll ${e}`),
-      // complete: () => console.log('getAll complete'),
     });
   }
 

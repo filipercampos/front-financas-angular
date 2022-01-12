@@ -10,7 +10,12 @@ export class InMemoryDatabase implements InMemoryDbService {
       { id: 3, name: 'Lazer', description: 'Cinema, parques, praia, etc' },
       { id: 4, name: 'Salário', description: 'Recebimento de Salário' },
       { id: 5, name: 'Freelas', description: 'Trabalhos como freelancer' },
+      { id: 5, name: 'Multas', description: 'Multas de trânsito' },
+      { id: 5, name: 'Milhas Aereas', description: 'Vendas de milhas aereas' },
     ];
+
+    const now = new Date();
+    const year = now.getFullYear();
 
     const entries: Entry[] = [
       {
@@ -19,10 +24,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[0].id,
         category: categories[0],
         paid: true,
-        date: '14/10/2018',
+        date: `14/10/${year}`,
         amount: '70,80',
         type: 'expense',
-        description: 'Qualquer descrição para essa despesa',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 2,
@@ -30,9 +35,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[1].id,
         category: categories[1],
         paid: false,
-        date: '14/10/2018',
+        date: `14/10/${year}`,
         amount: '15,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 3,
@@ -40,9 +46,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[3].id,
         category: categories[3],
         paid: true,
-        date: '15/10/2018',
+        date: `15/10/${year}`,
         amount: '4405,49',
         type: 'revenue',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 4,
@@ -50,9 +57,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[2].id,
         category: categories[2],
         paid: true,
-        date: '16/10/2018',
+        date: `16/10/${year}`,
         amount: '15,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 5,
@@ -60,9 +68,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[1].id,
         category: categories[1],
         paid: true,
-        date: '17/10/2018',
+        date: `17/10/${year}`,
         amount: '30,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 6,
@@ -70,9 +79,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[2].id,
         category: categories[2],
         paid: false,
-        date: '17/10/2018',
+        date: `17/10/${year}`,
         amount: '15,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 11,
@@ -80,9 +90,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[1].id,
         category: categories[1],
         paid: true,
-        date: '17/10/2018',
+        date: `17/10/${year}`,
         amount: '30,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 12,
@@ -90,9 +101,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[2].id,
         category: categories[2],
         paid: false,
-        date: '23/10/2018',
+        date: `23/10/${year}`,
         amount: '15,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 13,
@@ -100,9 +112,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[1].id,
         category: categories[1],
         paid: false,
-        date: '25/10/2018',
+        date: `25/10/${year}`,
         amount: '30,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 14,
@@ -110,9 +123,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[4].id,
         category: categories[4],
         paid: true,
-        date: '25/10/2018',
+        date: `25/10/${year}`,
         amount: '2980,00',
         type: 'revenue',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 19,
@@ -120,9 +134,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[2].id,
         category: categories[2],
         paid: false,
-        date: '07/11/2018',
+        date: `07/11/${year}`,
         amount: '15,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 21,
@@ -130,9 +145,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[1].id,
         category: categories[1],
         paid: true,
-        date: '17/11/2018',
+        date: `17/11/${year}`,
         amount: '30,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 22,
@@ -140,9 +156,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[2].id,
         category: categories[2],
         paid: true,
-        date: '18/11/2018',
+        date: `18/11/${year}`,
         amount: '15,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 23,
@@ -150,9 +167,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[1].id,
         category: categories[1],
         paid: false,
-        date: '21/11/2018',
+        date: `21/11/${year}`,
         amount: '130,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 44,
@@ -160,9 +178,10 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[2].id,
         category: categories[2],
         paid: true,
-        date: '28/11/2018',
+        date: `28/11/${year}`,
         amount: '15,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
       {
         id: 55,
@@ -170,12 +189,12 @@ export class InMemoryDatabase implements InMemoryDbService {
         categoryId: categories[1].id,
         category: categories[1],
         paid: false,
-        date: '28/11/2018',
+        date: `28/11/${year}`,
         amount: '30,00',
         type: 'expense',
+        description: 'Nenhuma descrição',
       } as Entry,
     ];
-
     return { categories, entries };
   }
 }

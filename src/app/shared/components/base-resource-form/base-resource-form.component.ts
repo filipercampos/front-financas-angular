@@ -73,7 +73,8 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
             // binds loaded resource data to resourceForm
             this.resourceForm.patchValue(resource);
           },
-          error: (err) => alert(`Internal server error, try again. ${err}`),
+          error: (err) =>
+            alert(`Internal server error on edit, try again. ${err}`),
         });
     }
   }
@@ -106,7 +107,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
     const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
 
     this.resourceService.update(resource).subscribe({
-      next: (resource) => this.actionsForSuccess(resource),
+      next: (value) => this.actionsForSuccess(value),
       error: (error) => this.actionsForError(error),
     });
   }

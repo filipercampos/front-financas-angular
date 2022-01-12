@@ -1,13 +1,7 @@
-<app-bread-crumb
-  [items]="[{text: 'Categorias'}]"
-></app-bread-crumb>
+<app-bread-crumb [items]="[{text: 'Categorias'}]"></app-bread-crumb>
 
-<app-page-header
-  page-title="Categorias"
-  button-text="+ Nova Categoria"
-  button-link="new"
-  button-class="btn-success"
-></app-page-header>
+<app-page-header page-title="Categorias" button-text="+ Nova Categoria" button-link="new" button-class="btn-success">
+</app-page-header>
 
 
 <table class="table table-hover">
@@ -25,7 +19,9 @@
       </td>
       <td>
         <a [routerLink]="[category.id, 'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-        <button (click)="deleteResource(category)" class="btn btn-outline-danger btn-sm">Excluir</button>
+
+        <button (click)="deleteResource(category)" class="btn btn-outline-danger btn-sm"
+          style='margin-left:24px'>Excluir</button>
       </td>
     </tr>
   </tbody>

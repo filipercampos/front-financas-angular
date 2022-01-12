@@ -25,27 +25,23 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   getById(id: any): Observable<T> {
     const url = `${this.apiPath}/${id}`;
 
-    return this.http
-      .get(url)
-      .pipe(
-        map(this.jsonDataToResource.bind(this)),
-        catchError(this.handleError)
-      );
+    return this.http.get(url).pipe(
+      map((value: any) => this.jsonDataToResource.bind(this, value)()),
+      catchError(this.handleError)
+    );
   }
 
   create(resource: T): Observable<T> {
-    return this.http
-      .post(this.apiPath, resource)
-      .pipe(
-        map(this.jsonDataToResource.bind(this)),
-        catchError(this.handleError)
-      );
+    return this.http.post(this.apiPath, resource).pipe(
+      map((value) => this.jsonDataToResource.bind(this, value)()),
+      catchError(this.handleError)
+    );
   }
 
   update(resource: T): Observable<T> {
     const url = `${this.apiPath}/${resource.id}`;
 
-    return this.http.put('url', resource).pipe(
+    return this.http.put(url, resource).pipe(
       map(() => resource),
       catchError(this.handleError)
     );
@@ -75,7 +71,7 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
   }
 
   protected handleError(error: any): Observable<any> {
-    console.error('Request failed ', error);
+    console.error('Request failed ', JSON.stringify(error));
     return throwError(() => error);
   }
 }

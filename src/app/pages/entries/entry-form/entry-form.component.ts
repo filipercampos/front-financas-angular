@@ -98,14 +98,14 @@ export class EntryFormComponent
 
   protected buildResourceForm() {
     this.resourceForm = this.formBuilder.group({
-      id: [0],
+      id: [null],
       name: ['', [Validators.required, Validators.minLength(2)]],
       description: [''],
       type: ['expense', [Validators.required]],
       amount: ['0', [Validators.required]],
       date: ['', [Validators.required]],
       paid: [true, [Validators.required]],
-      categoryId: [0, [Validators.required]],
+      categoryId: [null, [Validators.required]],
     });
   }
 
