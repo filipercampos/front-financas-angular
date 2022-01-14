@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-field-error',
@@ -11,32 +11,39 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./form-field-error.component.css'],
 })
 export class FormFieldErrorComponent implements OnInit {
-  private formControl: FormControl = new FormControl();
+  @Input('form-control')
+  formControl: AbstractControl | null = new FormControl('');
   constructor() {}
 
   ngOnInit() {}
 
   public get errorMessage(): string | null {
-    if (this.mustShowErrorMessage()) return this.getErrorMessage();
-    else return null;
+    if (this.mustShowErrorMessage()) {
+      return this.getErrorMessage();
+    }
+    return null;
   }
 
   private mustShowErrorMessage(): boolean {
-    return this.formControl.invalid && this.formControl.touched;
+    return (
+      this.formControl == null ||
+      (this.formControl!.invalid && this.formControl!.touched)
+    );
   }
 
   private getErrorMessage(): string | null {
-    if (this.formControl.errors?.['required']) return 'dado obrigatório';
-    else if (this.formControl.errors?.['email'])
-      return 'formato de email inválido';
-    else if (this.formControl.errors?.['minlength']) {
-      const requiredLength =
-        this.formControl.errors?.['minlength.requiredLength'];
-      return `deve ter no mínimo ${requiredLength} caracteres`;
-    } else if (this.formControl.errors?.['maxlength']) {
-      const requiredLength =
-        this.formControl.errors?.['maxlength.requiredLength'];
-      return `deve ter no máximo ${requiredLength} caracteres`;
+    const errors = this.formControl!.errors;
+    console.error(errors);
+    if (errors?.['required']) {
+      return 'Campo obrigatório';
+    } else if (errors?.['email']) {
+      return 'Email inválido';
+    } else if (errors?.['minlength']) {
+      const requiredLength = errors?.['minlength'].requiredLength;
+      return `Mínimo ${requiredLength} caracteres`;
+    } else if (errors?.['maxlength']) {
+      const requiredLength = errors?.['maxlength.requiredLength'];
+      return `Máximo ${requiredLength} caracteres`;
     }
     return null;
   }

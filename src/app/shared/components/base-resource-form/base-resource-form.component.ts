@@ -54,11 +54,14 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
     else this.updateResource();
   }
 
-  // PRIVATE METHODS
+  // PROTECTED METHODS
 
   protected setCurrentAction() {
-    if (this.route.snapshot.url[0].path == 'new') this.currentAction = 'new';
-    else this.currentAction = 'edit';
+    if (this.route.snapshot.url[0].path == 'new') {
+      this.currentAction = 'new';
+    } else {
+      this.currentAction = 'edit';
+    }
   }
 
   protected loadResource() {
@@ -96,7 +99,6 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
 
   protected createResource() {
     const resource: T = this.jsonDataToResourceFn(this.resourceForm.value);
-
     this.resourceService.create(resource).subscribe({
       next: (value) => this.actionsForSuccess(value),
       error: (err) => this.actionsForError(err),
@@ -118,6 +120,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
 
     // redirect/reload component page
     this.router
+      //skipLocationChange not register history
       .navigateByUrl(baseComponentPath, { skipLocationChange: true })
       .then(() =>
         this.router.navigate([baseComponentPath, resource.id, 'edit'])
