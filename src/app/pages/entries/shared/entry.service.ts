@@ -1,10 +1,11 @@
 import { Injectable, Injector } from '@angular/core';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { BaseResourceService } from '../../../shared/services/base-resource.service';
 import { CategoryService } from '../../categories/shared/category.service';
 import { ApiResources } from './../../../constants/api_resources';
+import { Category } from './../../categories/shared/category.model';
 import { Entry } from './entry.model';
 
 @Injectable({
@@ -31,11 +32,11 @@ export class EntryService extends BaseResourceService<Entry> {
 
   private setCategoryAndSendToServer(
     entry: Entry,
-    sendFn: any
+    sendFn: (data: Entry) => Observable<Entry>
   ): Observable<Entry> {
     return this.categoryService.getById(entry.categoryId).pipe(
       //was flatMap
-      map((category: any) => {
+      mergeMap((category: Category) => {
         entry.category = category;
         return sendFn(entry);
       }),
